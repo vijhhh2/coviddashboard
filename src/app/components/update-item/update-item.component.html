@@ -1,0 +1,16 @@
+<mat-card class="update-item-container">
+
+  <div  fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="10px">
+    <div fxLayout="row wrap" fxLayoutAlign="space-between end" class="w-100">
+      <mat-card-title>{{ update.country }}</mat-card-title>
+      <mat-card-subtitle class="date">{{ update.updatedAt | date: 'medium' }}</mat-card-subtitle>
+    </div>
+    <mat-card-subtitle class="m-3" >{{ update.province }}</mat-card-subtitle>
+  </div>
+
+  <mat-card-content fxLayout="row wrap" fxLayoutAlign="space-between start">
+      <p class="stats">Confirmed: {{ update.stats.confirmed }}</p>
+      <p class="stats">Deaths: {{ update.stats.deaths }}</p>
+      <p class="stats">Recovered: {{ update.stats.recovered }}</p>
+  </mat-card-content>
+</mat-card>

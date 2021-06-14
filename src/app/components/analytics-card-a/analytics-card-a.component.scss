@@ -1,0 +1,23 @@
+mat-card {
+  width: 100%;
+}
+.card-container {
+  width: 100%;
+}
+.title {
+  text-transform: uppercase;
+  color: #8898AA;
+  font-size: 1rem;
+}
+
+.count {
+  color: #4D4F5C;
+  font-size: 1.6rem;
+}
+.analytics-icon {
+  height: 100px;
+  width: 100px;
+  .material-icons {
+    font-size: 100px;
+  }
+}

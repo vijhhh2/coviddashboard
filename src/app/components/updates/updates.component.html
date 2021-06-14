@@ -1,0 +1,5 @@
+<mat-card fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="5px">
+  <ng-container *ngFor="let update of updates">
+    <app-update-item [update]="update"></app-update-item>
+  </ng-container>
+</mat-card>

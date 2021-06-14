@@ -1,0 +1,39 @@
+<mat-card fxLayout="column">
+  <mat-form-field>
+    <input
+      matInput
+      type="text"
+      placeholder="Search Country"
+      [formControl]="countryName"
+      [matAutocomplete]="auto"
+    />
+    <mat-autocomplete
+      #auto="matAutocomplete"
+      (optionSelected)="onSelectCountry($event)"
+    >
+      <mat-option
+        *ngFor="let country of filteredCountries$ | async"
+        [value]="country.countryName"
+      >
+        <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="5px">
+          <img [src]="country.flag" width="50px" alt="" />
+          <span>{{ country.countryName }}</span>
+        </div>
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+  <div *ngIf="selectedCountryData$" fxLayout="row wrap">
+      <app-pie-chart
+        fxFlex="50%"
+        [isLg]="isLg"
+        fxFlex.lt-md="100%"
+        [countryData]="selectedCountryData$ | async"
+      ></app-pie-chart>
+      <app-bar-chart
+        fxFlex="50%"
+        fxFlex.lt-md="100%"
+        [dataAxis]="todayDeathsAndCasesLabels"
+        [series]="todayDeathsAndCases"
+      ></app-bar-chart>
+  </div>
+</mat-card>

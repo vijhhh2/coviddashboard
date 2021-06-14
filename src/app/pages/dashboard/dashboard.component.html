@@ -1,0 +1,86 @@
+<main class="main p-1">
+  <ng-container *ngIf="!loading">
+    <ng-container *ngIf="allAnalytics$ | async as allAnalytics">
+      <div fxLayout="column" fxLayoutGap="10px">
+        <!-- Top 3 tabs -->
+        <div fxLayout="row wrap" fxLayoutAlign="space-between center">
+          <app-analytics-card-a
+            fxFlex="100%"
+            fxFlex.gt-sm="33%"
+            ngClass.lt-md="mb-1"
+            [title]="'TOTAL CASES'"
+            [icon]="'people'"
+            [count]="allAnalytics.cases"
+          ></app-analytics-card-a>
+          <app-analytics-card-a
+            fxFlex="100%"
+            fxFlex.gt-sm="33%"
+            ngClass.lt-md="mb-1"
+            [title]="'TOTAL DEATHS'"
+            [icon]="'people'"
+            [count]="allAnalytics.deaths"
+          ></app-analytics-card-a>
+          <app-analytics-card-a
+            fxFlex="100%"
+            fxFlex.gt-sm="33%"
+            [title]="'TOTAL RECOVERED'"
+            [icon]="'people'"
+            [count]="allAnalytics.recovered"
+          ></app-analytics-card-a>
+        </div>
+        <!-- Top 3 tabs -->
+
+        <!-- Bar chart for top 15 countries -->
+        <div *ngIf="allCountriesTotalCases$ | async as allCountriesTotalCases">
+          <app-app-analytics-card-b
+            [breakpoints]="(breakPoints$ | async)"
+            [dataAxis]="allCountriesTotalCases.countries"
+            [cases]="allCountriesTotalCases.cases"
+            [deaths]="allCountriesTotalCases.deaths"
+            [recovered]="allCountriesTotalCases.recovered"
+          ></app-app-analytics-card-b>
+        </div>
+        <!-- Bar chart for top 15 countries -->
+
+        <!-- Updates & Country based charts -->
+        <div
+          fxLayout="row wrap"
+          fxLayoutAlign="space-between center"
+          *ngIf="allCountries$ | async as allCountries"
+        >
+          <div
+            class="update-container"
+            *ngIf="updates$"
+            fxFlex="100%"
+            fxFlex.gt-sm="31%"
+            fxFlexOrder.lt-md="2"
+            ngClass.lt-md="mb-1"
+          >
+            <app-updates [updates]="updates$ | async"></app-updates>
+          </div>
+          <div
+            ngClass.gt-sm="pie-chart-container"
+            fxFlex="100%"
+            fxFlex.gt-sm="68%"
+            ngClass.lt-md="mb-1"
+            fxFlexOrder.lt-md="1"
+          >
+            <app-analytics-card-c-pie
+              [breakPoints]="breakPoints$ | async"
+              [allCountries]="allCountries"
+            ></app-analytics-card-c-pie>
+          </div>
+        </div>
+        <!-- Updates & Country based charts -->
+      </div>
+    </ng-container>
+  </ng-container>
+  <div
+    class="spinner"
+    fxLayout="row"
+    fxLayoutAlign="center center"
+    *ngIf="loading"
+  >
+    <mat-spinner></mat-spinner>
+  </div>
+</main>

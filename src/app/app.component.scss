@@ -1,0 +1,15 @@
+.p-3 {
+  padding: 15px;
+}
+:host ::ng-deep ::-webkit-scrollbar {
+  width: 0.3rem;
+}
+
+:host ::ng-deep ::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.2);
+}
+
+:host ::ng-deep ::-webkit-scrollbar-thumb {
+  background-color: #b7b7b7;
+  outline: 1px solid #b7b7b7;
+}
